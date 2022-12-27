@@ -20,4 +20,6 @@ public:
   LinearLayer(int input_size, int output_size, double lr);
   VectorXd feedForward(const VectorXd &input);
   VectorXd backPropagate(const VectorXd &grad);
+  void setWeights(MatrixXd weights);
+  void setBias(VectorXd bias);
 };

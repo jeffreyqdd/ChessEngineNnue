@@ -1,8 +1,8 @@
 #include <cassert>
-#include "linear.hpp"
 #include <Eigen/Dense>
-
+#include "linear.hpp"
 using namespace std;
+
 using Eigen::MatrixXd;
 using Eigen::VectorXd;
 
@@ -38,10 +38,20 @@ VectorXd LinearLayer::backPropagate(const VectorXd &grad){
   VectorXd prev_layer_grad = weights.transpose() * grad;
 
   bias -= eta * grad;
+  weights -= eta * (grad * input_val.transpose()); // outer product
 
   return prev_layer_grad;
 }
 
-int main() {
-  return 0;
+void LinearLayer::setWeights(MatrixXd weights){
+  assert(weights.rows() == output_dim);
+  assert(weights.cols() == input_dim);
+
+  weights = weights;
+}
+
+void LinearLayer::setBias(VectorXd bias){
+  assert(bias.size() == output_dim);
+
+  bias = bias;
 }
