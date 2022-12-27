@@ -1,3 +1,6 @@
-bin/**
+# I want to include the folder bin but none of the executables
+bin/*
+!bin/.gitkeep
+
 .bash_history
 
