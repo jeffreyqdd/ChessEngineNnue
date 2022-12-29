@@ -28,10 +28,3 @@ COPY --from=pip_installer /root/.local /root/.local
 COPY --from=cpp_installer /usr/include/Eigen/ /usr/include/Eigen/
 COPY --from=cpp_installer /usr/include/Catch2/ /usr/include/Catch2
 RUN mkdir engine_nnue
-
-
-
-
-
-
-

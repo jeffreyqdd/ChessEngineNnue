@@ -1,4 +1,8 @@
 # Chess Engine
+## Build Docker Container
+```
+DOCKER_BUILDKIT=1 docker build . -t nnue:latest
+```
 
 ## Installation Process
 **TODO** dockerize this because it's cool

@@ -1,29 +1,30 @@
 #Current make system
-IDIR=include/
-SRC=src/
-BIN=bin/
-TEST=tests/
+IDIR=include
+SRC=src
+BIN=bin
+TEST=tests
 
 CXX=g++
-CFLAGS= -O1 -std=c++17 -I$(IDIR)
-LIBS= -lm
+CFLAGS=-O1 -g -std=c++17 -I$(IDIR)/
+LIBS=-lm
 
+## BUILD RULES 
+$(BIN)/%.o: $(SRC)/%.cpp $(IDIR)/%.hpp 
+	$(CXX) $(CFLAGS) -c $< -o $@
 
+$(BIN)/%.o: $(SRC)/layers/%.cpp $(IDIR)/%.hpp
+	$(CXX) $(CFLAGS) -c $< -o $@
 
-test: nnue_test
-nnue_test:
-	$(CXX) $(CFLAGS) $(TEST)layer_test.cpp -o $(BIN)$@ $(SRC)layers/*.cpp /usr/include/catch2/catch_amalgamated.cpp
+$(BIN)/%.o: $(TEST)/%.cpp
+	$(CXX) $(CFLAGS) -c $< -o $@
 
-#$(patsubst %,$(ODIR)/%,$(_OBJ))
-#
-#main: 
-#bin/linear.o bin/relu.o
-#	$(info $@)
-#
-#layers: 
-#	$(CXX) $(CFLAGS) -c $(SRC)layers/linear.cpp -o $(BIN)linear.o
-#	$(CXX) $(CFLAGS) -c $(SRC)layers/relu.cpp -o $(BIN)relu.o
+### LINKING (generates executables)
+$(BIN)/nnue_test : $(BIN)/layer_test.o $(BIN)/catch_amalgamated.o $(BIN)/linear.o
+	$(CXX) $(CFLAGS) -o $@ $^ $(LIBS)
 
-#$test: 
-#$	$(CXX) $(CFLAGS) -c $(TEST)layer_test.cpp -o $(BIN)test.o
-	
+test: $(BIN)/nnue_test
+
+.PHONY: clean
+
+clean:
+	rm $(BIN)/* 

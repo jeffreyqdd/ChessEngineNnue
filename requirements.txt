@@ -1,1 +1,2 @@
-ninja==1.11.1
+ninja-syntax==1.7.2
+
