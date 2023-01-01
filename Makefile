@@ -5,8 +5,8 @@ BIN=bin
 TEST=tests
 
 CXX=g++
-CFLAGS=-O1 -g -std=c++17 -I$(IDIR)/
-LIBS=-lm
+CFLAGS=-O2 -g -std=c++20 -I$(IDIR)/
+LIBS=-lm -lfmt
 
 ## BUILD RULES 
 $(BIN)/%.o: $(SRC)/%.cpp $(IDIR)/%.hpp 
