@@ -1,5 +1,4 @@
 #include "linear.hpp"
-
 using namespace std;
 
 using Eigen::MatrixXd;
@@ -57,7 +56,7 @@ void LinearLayer::setWeights(MatrixXd weights) {
 
 void LinearLayer::setBias(VectorXd bias) {
     if (bias.size() != output_dim)
-        throw std::invalid_argument("new bias dimension does not match expected demsnion");
+        throw std::invalid_argument("new bias dimension does not match expected dimension");
 
     this->bias = bias;
 }
