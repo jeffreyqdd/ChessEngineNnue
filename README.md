@@ -1,14 +1,23 @@
 # Chess Engine
-## Build Docker Container
+
+
+
+## Setup
+I chose to dockerize this project, so we use the docker container to build and run the project.
+You may need to download Eigen headers, so the language server does not scream at you. The added bonus is that the docker container manages the deps and libraries!
+
+C++ Eigen library for matrix and vector math: https://eigen.tuxfamily.org/index.php?title=Main_Page.
+
+### Build Docker Image 
+Use whatever image name and tag I choose to use nnue:latest
 ```
 DOCKER_BUILDKIT=1 docker build . -t nnue:latest
 ```
+### Launch Docker Container
+if 'pwd' is the project root:
+```
+docker run -it -v $(pwd):/engine_nnue/ nnue <COMMAND> 
+```
+I like to use 'bash' to launch an interactive bash. 'make' works as well 
 
-## Installation Process
-**TODO** dockerize this because it's cool
-we use eigen because there is explicit vectorization for
-certain architectures. I'm mainly looking for AVX/AVX2...**TODO** see
-what flags I pass into the compiler to enable these opts
-
-1. Install C++ Eigen matrix library. https://eigen.tuxfamily.org/index.php?title=Main_Page. Clone repo and put under /usr/loca/include
-
+**TODO**: add wrapping script, so there will be no need to type long docker run command
